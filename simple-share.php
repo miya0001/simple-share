@@ -72,12 +72,11 @@ class Simple_Share {
 	}
 
 
-	private function get_share_buttons()
+	public function get_share_buttons()
 	{
 		$share_buttons = array(
 			'twitter' => '<a href="https://twitter.com/share" class="twitter-share-button" data-count="vertical">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^/.test(d.location)?\'http\':\'https\';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+\'://platform.twitter.com/widgets.js\';fjs.parentNode.insertBefore(js,fjs);}}(document, \'script\', \'twitter-wjs\');</script>',
 			'facebook' => '<div class="fb-like" data-href="%1$s" data-send="false" data-layout="box_count" data-show-faces="false"></div>',
-			'hatena' => '<a href="http://b.hatena.ne.jp/entry/%1$s" class="hatena-bookmark-button" data-hatena-bookmark-title="%2$s" data-hatena-bookmark-layout="vertical-balloon" data-hatena-bookmark-lang="en"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>',
 			'google' => '<div class="g-plus" data-action="share" data-annotation="vertical-bubble" data-height="60"></div>
 			<script type="text/javascript">
 			(function() {
@@ -87,6 +86,10 @@ class Simple_Share {
 				})();
 				</script>',
 		);
+
+		if ( 'ja' === get_locale() ) {
+			$share_buttons['hatena'] = '<a href="http://b.hatena.ne.jp/entry/%1$s" class="hatena-bookmark-button" data-hatena-bookmark-title="%2$s" data-hatena-bookmark-layout="vertical-balloon" data-hatena-bookmark-lang="en"><img src="https://b.st-hatena.com/images/entry-button/button-only@2x.png" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="https://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>';
+		}
 
 		return apply_filters( 'simple_share_get_share_buttons', $share_buttons );
 	}
