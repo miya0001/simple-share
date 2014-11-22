@@ -75,7 +75,10 @@ class Simple_Share {
 	public function get_share_buttons()
 	{
 		$share_buttons = array(
-			'twitter' => '<a href="https://twitter.com/share" class="twitter-share-button" data-count="vertical">Tweet</a><script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^/.test(d.location)?\'http\':\'https\';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+\'://platform.twitter.com/widgets.js\';fjs.parentNode.insertBefore(js,fjs);}}(document, \'script\', \'twitter-wjs\');</script>',
+			'twitter' => '<a class="twitter-share-button" href="https://twitter.com/share" data-lang="ja" data-count="vertical">Tweet</a>
+			<script type="text/javascript">// <![CDATA[
+				!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+				// ]]></script>',
 			'facebook' => '<div class="fb-like" data-href="%1$s" data-send="false" data-layout="box_count" data-show-faces="false"></div>',
 			'google' => '<div class="g-plus" data-action="share" data-annotation="vertical-bubble" data-height="60"></div>
 			<script type="text/javascript">
