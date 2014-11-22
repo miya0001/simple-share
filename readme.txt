@@ -21,6 +21,10 @@ You can place share buttons just activating this plugin.
 
 * simple_share_get_share_buttons - Filter the share buttons.
 
+= Contribution
+
+* [https://github.com/miya0001/simple-share](https://github.com/miya0001/simple-share)
+
 == Installation ==
 
 1. Upload `simple-share.zip` from the admin panel.
