@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: Simple Share
-Version: 0.1.0
+Plugin Name: Simple-share
+Version: 0.2.0
 Description: You can place share buttons just activating this plugin.
 Author: Takayuki Miyauchi
 Author URI: http://firegoby.jp/
@@ -24,6 +24,7 @@ class Simple_Share {
 	{
 		add_filter( 'the_content', array( $this, 'the_content' ), 9999 );
 		add_action( 'wp_head', array( $this, 'wp_head' ), 9999 );
+		add_action( 'wp_footer', array( $this, 'wp_footer' ), 9999 );
 	}
 
 
@@ -34,12 +35,16 @@ class Simple_Share {
 		<style type="text/css">
 			.simple-share
 			{
-				overflow: auto;
+                margin-left: 0;
 			}
 			.simple-share .simple-share-button
 			{
-				float: left;
+                display: inline-block;
 				margin-right: 10px;
+				vertical-align: top;
+			}
+			.simple-share .fb-like iframe {
+				max-width: none;
 			}
 			@media screen and (max-width: 480px) {
 				.simple-share
@@ -60,13 +65,13 @@ class Simple_Share {
 		}
 
 		$buttons = $this->get_share_buttons();
-		$share = '<div class="simple-share">';
+		$share = '<ul class="simple-share">';
 		foreach ( $buttons as $key => $btn ) {
-			$share .= '<div class="simple-share-button simple-share-' . esc_attr( $key ) . '">';
+			$share .= '<li class="simple-share-button simple-share-' . esc_attr( $key ) . '">';
 			$share .= sprintf( $btn, esc_attr( get_permalink() ), esc_attr( get_the_title() ) );
-			$share .= '</div>';
+			$share .= '</li>';
 		}
-		$share .= '</div>';
+		$share .= '</ul>';
 
 		return $share . $contents;
 	}
@@ -75,19 +80,12 @@ class Simple_Share {
 	public function get_share_buttons()
 	{
 		$share_buttons = array(
-			'twitter' => '<a class="twitter-share-button" href="https://twitter.com/share" data-lang="ja" data-count="vertical">Tweet</a>
+			'twitter' => '<a class="twitter-share-button" href="https://twitter.com/share" data-lang="en" data-count="vertical">Tweet</a>
 			<script type="text/javascript">// <![CDATA[
 				!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
 				// ]]></script>',
 			'facebook' => '<div class="fb-like" data-href="%1$s" data-send="false" data-layout="box_count" data-show-faces="false"></div>',
-			'google' => '<div class="g-plus" data-action="share" data-annotation="vertical-bubble" data-height="60"></div>
-			<script type="text/javascript">
-			(function() {
-				var po = document.createElement(\'script\'); po.type = \'text/javascript\'; po.async = true;
-				po.src = \'https://apis.google.com/js/plusone.js\';
-				var s = document.getElementsByTagName(\'script\')[0]; s.parentNode.insertBefore(po, s);
-				})();
-				</script>',
+			'google' => '<div class="g-plusone" data-size="tall"></div>',
 		);
 
 		if ( 'ja' === get_locale() ) {
@@ -97,4 +95,21 @@ class Simple_Share {
 		return apply_filters( 'simple_share_get_share_buttons', $share_buttons );
 	}
 
+
+	public function wp_footer()
+	{
+		?>
+		<!-- simple-share -->
+		<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+			var js, fjs = d.getElementsByTagName(s)[0];
+			if (d.getElementById(id)) return;
+			js = d.createElement(s); js.id = id;
+			js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+			fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));</script>
+		<script src="https://apis.google.com/js/platform.js" async defer></script>
+		<!-- end simple-share -->
+		<?php
+	}
 }
