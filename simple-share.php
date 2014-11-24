@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: Simple-share
-Version: 0.1
+Plugin Name: Simple Share
+Version: 0.1.0
 Description: You can place share buttons just activating this plugin.
 Author: Takayuki Miyauchi
 Author URI: http://firegoby.jp/
