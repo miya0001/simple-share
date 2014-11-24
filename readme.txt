@@ -14,7 +14,7 @@ You can place share buttons just activating this plugin.
 You can place share buttons just activating this plugin.
 
 * There is no admin panel.
-* You can place just four buttons twitter, facebook, google, hatena.
+* You can place just four buttons twitter, facebook, google, hatena(ja only).
 * They will be hidden at mobile screen (under 480px).
 
 = Filter hook
