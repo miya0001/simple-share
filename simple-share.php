@@ -35,11 +35,11 @@ class Simple_Share {
 		<style type="text/css">
 			.simple-share
 			{
-                margin-left: 0;
+				margin-left: 0;
 			}
 			.simple-share .simple-share-button
 			{
-                display: inline-block;
+				display: inline-block;
 				margin-right: 10px;
 				vertical-align: top;
 			}
