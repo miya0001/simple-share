@@ -3,7 +3,7 @@ Contributors: miyauchi
 Tags: share, social, twitter, facebook, hatena, google
 Requires at least: 4.0
 Tested up to: 4.0
-Stable tag: 0.2.0
+Stable tag: 0.3.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -35,6 +35,10 @@ You can place share buttons just activating this plugin.
 1. Share buttons.
 
 == Changelog ==
+
+= 0.2.0 =
+
+* Add mobile support.
 
 = 0.2.0 =
 

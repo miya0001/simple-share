@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Simple-share
-Version: 0.2.0
+Version: 0.3.0
 Description: You can place share buttons just activating this plugin.
 Author: Takayuki Miyauchi
 Author URI: http://firegoby.jp/
@@ -73,6 +73,7 @@ class Simple_Share {
 				#simple-share-mobile-footer a
 				{
 					color: #ffffff;
+					font-size: 14px;
 				}
 				#simple-share-mobile-footer .simple-share-mobile-footer-button
 				{
@@ -137,6 +138,16 @@ class Simple_Share {
 
 	public function wp_footer()
 	{
+		$mobile_footer = '<div id="simple-share-mobile-footer-wrap"></div>';
+		if ( is_singular() ) {
+			$mobile_footer .= '<div id="simple-share-mobile-footer">';
+			$mobile_footer .= '<div class="simple-share-mobile-footer-button simple-share-twitter"><a href="https://twitter.com/intent/tweet?text='.urlencode( esc_attr( get_the_title() ).' '.esc_url( get_permalink() ) ).'">Share on Twitter</a></div>';
+			$mobile_footer .= '<div class="simple-share-mobile-footer-button simple-share-facebook"><a href="https://www.facebook.com/sharer/sharer.php?u='.urlencode( esc_url( get_permalink() ) ).'">Share on Facebook</a></div>';
+			$mobile_footer .= '</div>';
+		}
+
+		echo apply_filters( 'simple_share_mobile_footer', $mobile_footer );
+
 		?>
 		<!-- simple-share -->
 		<div id="fb-root"></div>
@@ -150,24 +161,5 @@ class Simple_Share {
 		<script src="//apis.google.com/js/platform.js" async defer></script>
 		<!-- end simple-share -->
 		<?php
-
-		$mobile_footer = '<div id="simple-share-mobile-footer-wrap"></div>';
-		if ( is_singular() ) {
-			$mobile_footer .= '<div id="simple-share-mobile-footer">';
-			$mobile_footer .= '<div class="simple-share-mobile-footer-button simple-share-twitter"><a href="https://twitter.com/intent/tweet?text='.urlencode( esc_attr( get_the_title() ).' '.esc_url( get_permalink() ) ).'">Twitter</a></div>';
-			$mobile_footer .= '<div class="simple-share-mobile-footer-button simple-share-facebook"><a href="https://www.facebook.com/sharer/sharer.php?u='.urlencode( esc_url( get_permalink() ) ).'">facebook</a></div>';
-			$mobile_footer .= '</div>';
-		}
-
-		echo apply_filters( 'simple_share_mobile_footer', $mobile_footer );
-?>
-<script>
-(function($){
-
-	var simnple_share_footer = $('#simple-share-mobile-footer');
-
-})(jQuery);
-</script>
-<?php
 	}
 }
