@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Simple-share
-Version: 0.3.0
+Version: 0.3.1
 Description: You can place share buttons just activating this plugin.
 Author: Takayuki Miyauchi
 Author URI: http://firegoby.jp/
@@ -74,6 +74,7 @@ class Simple_Share {
 				{
 					color: #ffffff;
 					font-size: 14px;
+					text-decoration: none;
 				}
 				#simple-share-mobile-footer .simple-share-mobile-footer-button
 				{
