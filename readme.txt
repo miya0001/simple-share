@@ -1,9 +1,9 @@
-=== Simple-share ===
+=== Simple Share ===
 Contributors: miyauchi
 Tags: share, social, twitter, facebook, hatena, google
 Requires at least: 4.0
 Tested up to: 4.0
-Stable tag: 0.3.1
+Stable tag: 0.4.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -36,7 +36,12 @@ You can place share buttons just activating this plugin.
 
 == Changelog ==
 
-= 0.2.0 =
+= 0.4.0 =
+
+* Fixed typo.
+* Add target arg to facebook link.
+
+= 0.3.0 =
 
 * Add mobile support.
 
