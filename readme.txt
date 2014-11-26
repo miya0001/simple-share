@@ -32,7 +32,8 @@ You can place share buttons just activating this plugin.
 
 == Screenshots ==
 
-1. Share buttons.
+1. Share buttons for PC.
+2. Share buttons for Mobile.
 
 == Changelog ==
 
