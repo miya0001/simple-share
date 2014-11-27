@@ -3,7 +3,7 @@ Contributors: miyauchi, hissy
 Tags: share, social, twitter, facebook, hatena, google
 Requires at least: 4.0
 Tested up to: 4.0
-Stable tag: 0.5.0
+Stable tag: 0.6.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -17,11 +17,19 @@ You can place share buttons just activating this plugin.
 * You can place just four buttons twitter, facebook, google, hatena(ja only).
 * They will be hidden at mobile screen (under 480px).
 
-= Filter hook
+= Filter hook =
 
 * simple_share_get_share_buttons - Filter the share buttons.
+* simple_share_mobile_footer - Filter the footer buttons on mobile.
 
-= Contribution
+= Other Notes =
+
+If you would have conflicts with other plugins you can stop JavaScripts in the footer like below.
+
+* `remove_action( 'simple_share_footer', array( $simple_share, 'facebook_script' ) );` - Stop facebook scripts.
+* `remove_action( 'simple_share_footer', array( $simple_share, 'google_script' ) );` - Stop Google scripts.
+
+= Contribution =
 
 * [https://github.com/miya0001/simple-share](https://github.com/miya0001/simple-share)
 
@@ -36,6 +44,11 @@ You can place share buttons just activating this plugin.
 2. Share buttons for Mobile.
 
 == Changelog ==
+
+= 0.6.0 =
+
+* Update facebook javascript sdk.
+* Fix conflict with other plugins.
 
 = 0.4.0 =
 
