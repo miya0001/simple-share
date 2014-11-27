@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Simple-share
+Plugin Name: Simple Share
 Version: 0.5.0
 Description: You can place share buttons just activating this plugin.
 Author: Takayuki Miyauchi
@@ -25,6 +25,9 @@ class Simple_Share {
 		add_filter( 'the_content', array( $this, 'the_content' ), 9999 );
 		add_action( 'wp_head', array( $this, 'wp_head' ), 9999 );
 		add_action( 'wp_footer', array( $this, 'wp_footer' ), 9999 );
+
+		add_action( 'simple_share_footer', array( $this, 'facebook_script' ) );
+		add_action( 'simple_share_footer', array( $this, 'google_script' ) );
 	}
 
 
@@ -157,21 +160,46 @@ class Simple_Share {
 
 		echo apply_filters( 'simple_share_mobile_footer', $mobile_footer );
 
+		do_action( 'simple_share_footer' );
+	}
+
+
+	public function facebook_script()
+	{
+		/*
+		 * If you would have conflicts with other plugin, you can stop here like below
+		 *
+		 * remove_action( 'simple_share_footer', array( $simple_share, 'facebook_script' ) );
+		 */
+
 		// Check if the Facebook JavaScript SDK is already registered to avoid double load
-		if ( ! wp_script_is( 'facebook-jssdk' ) ) {
+		if ( wp_script_is( 'facebook-jssdk' ) ) {
+			return;
+		}
+
 		?>
-		<!-- simple-share -->
-		<div id="fb-root"></div>
-		<script>(function(d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) return;
-			js = d.createElement(s); js.id = id;
-			js.src = "//connect.facebook.net/en_US/sdk.js#version=v2.0&xfbml=1";
-			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));</script>
-		<?php } ?>
-		<script src="//apis.google.com/js/platform.js" async defer></script>
-		<!-- end simple-share -->
+			<div id="fb-root"></div>
+			<script>
+				(function(d, s, id) {
+					var js, fjs = d.getElementsByTagName(s)[0];
+					if (d.getElementById(id)) return;
+					js = d.createElement(s); js.id = id;
+					js.src = "//connect.facebook.net/en_US/sdk.js#version=v2.0&xfbml=1";
+					fjs.parentNode.insertBefore(js, fjs);
+				}(document, 'script', 'facebook-jssdk'));
+			</script>
 		<?php
+	}
+
+
+	public function google_script()
+	{
+		/*
+		* If you would have conflicts with other plugin, you can stop here like below
+		*
+		* remove_action( 'simple_share_footer', array( $simple_share, 'google_script' ) );
+		*/
+
+		echo '<script src="//apis.google.com/js/platform.js" async defer></script>';
 	}
 }
