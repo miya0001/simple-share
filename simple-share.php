@@ -158,7 +158,7 @@ class Simple_Share {
 		echo apply_filters( 'simple_share_mobile_footer', $mobile_footer );
 
 		// Check if the Facebook JavaScript SDK is already registered to avoid double load
-		if (!wp_script_is('facebook-jssdk')) {
+		if ( ! wp_script_is( 'facebook-jssdk' ) ) {
 		?>
 		<!-- simple-share -->
 		<div id="fb-root"></div>

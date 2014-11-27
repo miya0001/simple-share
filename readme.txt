@@ -1,5 +1,5 @@
 === Simple Share ===
-Contributors: miyauchi
+Contributors: miyauchi, hissy
 Tags: share, social, twitter, facebook, hatena, google
 Requires at least: 4.0
 Tested up to: 4.0
