@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Simple-share
-Version: 0.4.0
+Version: 0.5.0
 Description: You can place share buttons just activating this plugin.
 Author: Takayuki Miyauchi
 Author URI: http://firegoby.jp/
@@ -30,6 +30,10 @@ class Simple_Share {
 
 	public function wp_head()
 	{
+		if ( ! is_singular() ) {
+			return;
+		}
+
 		?>
 		<!-- simple-share -->
 		<style type="text/css">
@@ -139,6 +143,10 @@ class Simple_Share {
 
 	public function wp_footer()
 	{
+		if ( ! is_singular() ) {
+			return;
+		}
+
 		$mobile_footer = '<div id="simple-share-mobile-footer-wrap"></div>';
 		if ( is_singular() ) {
 			$mobile_footer .= '<div id="simple-share-mobile-footer">';
