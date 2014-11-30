@@ -3,7 +3,7 @@ Contributors: miyauchi, hissy
 Tags: share, social, twitter, facebook, hatena, google
 Requires at least: 4.0
 Tested up to: 4.0
-Stable tag: 0.6.0
+Stable tag: 0.7.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -19,8 +19,18 @@ You can place share buttons just activating this plugin.
 
 = Filter hook =
 
+* simple_share_the_content - Filter the content.
 * simple_share_get_share_buttons - Filter the share buttons.
 * simple_share_mobile_footer - Filter the footer buttons on mobile.
+* simple_share_style - Filter the css.
+
+= Placing share buttons in the footer.
+
+```
+add_filter( 'simple_share_the_content', function( $content, $share, $orig ){
+    return $share. $orig . $share;
+}, 10, 3 );
+```
 
 = Other Notes =
 

@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Simple Share
-Version: 0.6.0
+Version: 0.7.0
 Description: You can place share buttons just activating this plugin.
 Author: Takayuki Miyauchi
 Author URI: http://firegoby.jp/
@@ -22,87 +22,32 @@ class Simple_Share {
 
 	public function plugins_loaded()
 	{
-		add_filter( 'the_content', array( $this, 'the_content' ), 9999 );
-		add_action( 'wp_head', array( $this, 'wp_head' ), 9999 );
-		add_action( 'wp_footer', array( $this, 'wp_footer' ), 9999 );
+		add_filter( 'the_content', array( $this, 'the_content' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'wp_enqueue_scripts' ) );
+		add_action( 'wp_footer', array( $this, 'wp_footer' ) );
 
+		add_action( 'simple_share_footer', array( $this, 'twitter_script' ) );
 		add_action( 'simple_share_footer', array( $this, 'facebook_script' ) );
 		add_action( 'simple_share_footer', array( $this, 'google_script' ) );
+		add_action( 'simple_share_footer', array( $this, 'hatena_script' ) );
 	}
 
 
-	public function wp_head()
+	public function wp_enqueue_scripts()
 	{
-		if ( ! is_singular() ) {
-			return;
-		}
+		/*
+		* If you want to style only your theme. You can stop style of this plugin.
+		*
+		* add_filter( 'simple_share_style', "__return_false" );
+		*/
 
-		?>
-		<!-- simple-share -->
-		<style type="text/css">
-			.simple-share
-			{
-				margin-left: 0;
-			}
-			.simple-share .simple-share-button
-			{
-				display: inline-block;
-				margin-right: 10px;
-				vertical-align: top;
-			}
-			.simple-share .fb-like iframe {
-				max-width: none;
-			}
-			#simple-share-mobile-footer-wrap,
-			#simple-share-mobile-footer
-			{
-				display: none;
-			}
-			@media screen and (max-width: 480px) {
-				.simple-share
-				{
-					display: none;
-				}
-				#simple-share-mobile-footer-wrap,
-				#simple-share-mobile-footer
-				{
-					height: 40px;
-					display: block;
-				}
-				#simple-share-mobile-footer
-				{
-					width: 100%;
-					height: 40px;
-					position: fixed;
-					bottom: 0px;
-					z-index: 100;
-				}
-				#simple-share-mobile-footer a
-				{
-					color: #ffffff;
-					font-size: 14px;
-					text-decoration: none;
-				}
-				#simple-share-mobile-footer .simple-share-mobile-footer-button
-				{
-					display: inline-block;
-					width: 50%;
-					text-align: center;
-					color: #ffffff;
-					line-height: 40px;
-				}
-				#simple-share-mobile-footer .simple-share-twitter
-				{
-					background-color: #00acee;
-				}
-				#simple-share-mobile-footer .simple-share-facebook
-				{
-					background-color: #3b5998;
-				}
-			}
-		</style>
-		<!-- end simple-share -->
-		<?php
+		$style = apply_filters( 'simple_share_style', plugins_url( 'css/simple-share.css', __FILE__ ) );
+		if ( $style ) {
+			wp_enqueue_style(
+				'simple_share',
+				$style
+			);
+		}
 	}
 
 
@@ -121,23 +66,19 @@ class Simple_Share {
 		}
 		$share .= '</ul>';
 
-		return $share . $contents;
+		return apply_filters( 'simple_share_the_content', $share . $contents, $share, $contents );
 	}
-
 
 	public function get_share_buttons()
 	{
 		$share_buttons = array(
-			'twitter' => '<a class="twitter-share-button" href="https://twitter.com/share" data-lang="en" data-count="vertical">Tweet</a>
-			<script type="text/javascript">// <![CDATA[
-				!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
-				// ]]></script>',
+			'twitter' => '<a class="twitter-share-button" href="https://twitter.com/share" data-lang="en" data-count="vertical">Tweet</a>',
 			'facebook' => '<div class="fb-like" data-href="%1$s" data-send="false" data-layout="box_count" data-show-faces="false"></div>',
 			'google' => '<div class="g-plusone" data-size="tall"></div>',
 		);
 
 		if ( 'ja' === get_locale() ) {
-			$share_buttons['hatena'] = '<a href="http://b.hatena.ne.jp/entry/%1$s" class="hatena-bookmark-button" data-hatena-bookmark-title="%2$s" data-hatena-bookmark-layout="vertical-balloon" data-hatena-bookmark-lang="en"><img src="//b.st-hatena.com/images/entry-button/button-only@2x.png" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="//b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>';
+			$share_buttons['hatena'] = '<a href="http://b.hatena.ne.jp/entry/%1$s" class="hatena-bookmark-button" data-hatena-bookmark-title="%2$s" data-hatena-bookmark-layout="vertical-balloon" data-hatena-bookmark-lang="en"><img src="//b.st-hatena.com/images/entry-button/button-only@2x.png" width="20" height="20" style="border: none;" /></a>';
 		}
 
 		return apply_filters( 'simple_share_get_share_buttons', $share_buttons );
@@ -163,11 +104,39 @@ class Simple_Share {
 		do_action( 'simple_share_footer' );
 	}
 
+	public function twitter_script()
+	{
+		/*
+		* If you would have conflicts with other plugin, you can stop here like below.
+		*
+		* remove_action( 'simple_share_footer', array( $simple_share, 'twitter_script' ) );
+		*/
+
+		?>
+			<script type="text/javascript">// <![CDATA[
+			!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+			// ]]></script>
+		<?php
+	}
+
+	public function hatena_script()
+	{
+		/*
+		* If you would have conflicts with other plugin, you can stop here like below.
+		*
+		* remove_action( 'simple_share_footer', array( $simple_share, 'hatena_script' ) );
+		*/
+
+		$btns = $this->get_share_buttons();
+		if ( isset( $btns['hatena'] ) && $btns['hatena'] ) {
+			echo '<script type="text/javascript" src="//b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>';
+		}
+	}
 
 	public function facebook_script()
 	{
 		/*
-		 * If you would have conflicts with other plugin, you can stop here like below
+		 * If you would have conflicts with other plugin, you can stop here like below.
 		 *
 		 * remove_action( 'simple_share_footer', array( $simple_share, 'facebook_script' ) );
 		 */
@@ -195,7 +164,7 @@ class Simple_Share {
 	public function google_script()
 	{
 		/*
-		* If you would have conflicts with other plugin, you can stop here like below
+		* If you would have conflicts with other plugin, you can stop here like below.
 		*
 		* remove_action( 'simple_share_footer', array( $simple_share, 'google_script' ) );
 		*/
