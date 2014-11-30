@@ -55,6 +55,11 @@ If you would have conflicts with other plugins you can stop JavaScripts in the f
 
 == Changelog ==
 
+= 0.7.0 =
+
+* Add some filters.
+* https://github.com/miya0001/simple-share/compare/0.6.0...0.7.0
+
 = 0.6.0 =
 
 * Update facebook javascript sdk.
