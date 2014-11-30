@@ -62,4 +62,20 @@ class Simple_Share_Test extends WP_UnitTestCase {
 		do_action( 'wp_enqueue_scripts' );
 		$this->assertFalse( wp_style_is( 'simple_share' ) );
 	}
+
+	/**
+	* Test the filter simple_share_need_hatena.
+	*
+	* @test
+	*/
+	public function filter_simple_share_need_hatena()
+	{
+		$simple_share = new Simple_Share();
+
+		add_filter( 'simple_share_need_hatena', "__return_true" );
+		$this->assertEquals( 4, count( $simple_share->get_share_buttons() ) );
+
+		add_filter( 'simple_share_need_hatena', "__return_false" );
+		$this->assertEquals( 3, count( $simple_share->get_share_buttons() ) );
+	}
 }

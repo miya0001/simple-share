@@ -77,7 +77,7 @@ class Simple_Share {
 			'google' => '<div class="g-plusone" data-size="tall"></div>',
 		);
 
-		if ( 'ja' === get_locale() ) {
+		if ( apply_filters( 'simple_share_need_hatena', 'ja' === get_locale() ) ) {
 			$share_buttons['hatena'] = '<a href="http://b.hatena.ne.jp/entry/%1$s" class="hatena-bookmark-button" data-hatena-bookmark-title="%2$s" data-hatena-bookmark-layout="vertical-balloon" data-hatena-bookmark-lang="en"><img src="//b.st-hatena.com/images/entry-button/button-only@2x.png" width="20" height="20" style="border: none;" /></a>';
 		}
 
