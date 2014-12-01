@@ -55,6 +55,11 @@ If you would have conflicts with other plugins you can stop JavaScripts in the f
 
 == Changelog ==
 
+= 0.8.0 =
+
+* Fix always fire scripts in the footer.
+* https://github.com/miya0001/simple-share/compare/0.7.0...0.8.0
+
 = 0.7.0 =
 
 * Add some filters.
