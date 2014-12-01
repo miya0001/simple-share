@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Simple Share
-Version: 0.7.3
+Version: 0.8.0
 Description: You can place share buttons just activating this plugin.
 Author: Takayuki Miyauchi
 Author URI: http://firegoby.jp/
@@ -91,17 +91,16 @@ class Simple_Share {
 			return;
 		}
 
-		$mobile_footer = '<div id="simple-share-mobile-footer-wrap"></div>';
 		if ( is_singular() ) {
+			$mobile_footer = '<div id="simple-share-mobile-footer-wrap"></div>';
 			$mobile_footer .= '<div id="simple-share-mobile-footer">';
 			$mobile_footer .= '<div class="simple-share-mobile-footer-button simple-share-twitter"><a href="https://twitter.com/intent/tweet?text='.urlencode( esc_attr( get_the_title() ).' '.esc_url( get_permalink() ) ).'">Share on Twitter</a></div>';
-			$mobile_footer .= '<div class="simple-share-mobile-footer-button simple-share-facebook"><a href="https://www.facebook.com/sharer/sharer.php?u='.urlencode( esc_url( get_permalink() ) ).'">Share on Facebook</a></div>';
+			$mobile_footer .= '<div class="simple-share-mobile-footer-button simple-share-facebook"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u='.urlencode( esc_url( get_permalink() ) ).'">Share on Facebook</a></div>';
 			$mobile_footer .= '</div>';
+
+			echo esc_js( apply_filters( 'simple_share_mobile_footer', $mobile_footer ) );
+			do_action( 'simple_share_footer' );
 		}
-
-		echo apply_filters( 'simple_share_mobile_footer', $mobile_footer );
-
-		do_action( 'simple_share_footer' );
 	}
 
 	public function twitter_script()
