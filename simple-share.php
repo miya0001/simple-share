@@ -82,6 +82,10 @@ class Simple_Share {
 					color: #ffffff;
 					font-size: 14px;
 					text-decoration: none;
+					display: block;
+					width: 100%;
+					height: 40px;
+					line-height: 40px;
 				}
 				#simple-share-mobile-footer .simple-share-mobile-footer-button
 				{
@@ -89,7 +93,6 @@ class Simple_Share {
 					width: 50%;
 					text-align: center;
 					color: #ffffff;
-					line-height: 40px;
 				}
 				#simple-share-mobile-footer .simple-share-twitter
 				{
