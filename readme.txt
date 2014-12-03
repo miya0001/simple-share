@@ -1,9 +1,9 @@
 === Simple Share ===
-Contributors: miyauchi, hissy
+Contributors: miyauchi, hissy, mayukojpn
 Tags: share, social, twitter, facebook, hatena, google
 Requires at least: 4.0
 Tested up to: 4.0
-Stable tag: 0.8.1
+Stable tag: 0.9.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,7 @@ You can place share buttons just activating this plugin.
 You can place share buttons just activating this plugin.
 
 * There is no admin panel.
-* You can place just four buttons twitter, facebook, google, hatena(ja only).
+* You can place buttons twitter, facebook, google, hatena(ja only).
 * They will be hidden at mobile screen (under 480px).
 
 = Filter hook =
@@ -42,6 +42,7 @@ If you would have conflicts with other plugins you can stop JavaScripts in the f
 = Contribution =
 
 * [https://github.com/miya0001/simple-share](https://github.com/miya0001/simple-share)
+* [https://travis-ci.org/miya0001/simple-share/](https://travis-ci.org/miya0001/simple-share/)
 
 == Installation ==
 
