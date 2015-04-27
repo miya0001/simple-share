@@ -7,14 +7,14 @@ Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-You can place share buttons just activating this plugin.
+You can place share buttons just by activating this plugin.
 
 == Description ==
 
-You can place share buttons just activating this plugin.
+You can place share buttons just by activating this plugin.
 
 * There is no admin panel.
-* You can place buttons twitter, facebook, google, hatena(ja only).
+* You can place twitter, facebook, google, and hatena(ja only) buttons.
 * They will be hidden at mobile screen (under 480px).
 
 = Filter hook =
