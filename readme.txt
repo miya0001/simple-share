@@ -2,8 +2,8 @@
 Contributors: miyauchi, hissy, mayukojpn
 Tags: share, social, twitter, facebook, hatena, google
 Requires at least: 4.0
-Tested up to: 4.1
-Stable tag: 1.0.0
+Tested up to: 4.2
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,6 +55,10 @@ If you would have conflicts with other plugins you can stop JavaScripts in the f
 2. Share buttons for Mobile.
 
 == Changelog ==
+
+= 1.0.1 =
+
+* Tested up to WordPress 4.2.
 
 = 0.8.0 =
 
